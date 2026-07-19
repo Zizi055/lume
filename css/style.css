@@ -863,3 +863,12 @@ section { padding: 120px 0; }
 	.footer__top { grid-template-columns: 1fr; gap: 32px; }
 	.footer__bottom { flex-direction: column; align-items: flex-start; gap: 10px; }
 }
+
+/* print: page opens without JS, so scroll-reveal content must render immediately */
+@media print {
+	* { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+	.reveal, .reveal-stagger, .reveal-stagger > * { opacity: 1 !important; transform: none !important; }
+	.mobile-cta, .burger, .nav-mobile { display: none !important; }
+	.header { position: static !important; }
+	.hero { min-height: auto !important; }
+}
