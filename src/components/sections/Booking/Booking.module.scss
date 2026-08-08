@@ -1,0 +1,162 @@
+.wrap {
+  padding: 0 0 40px;
+}
+
+.booking {
+  background: var(--deep);
+  color: var(--bg);
+  border-radius: var(--radius-lg);
+  padding: 88px 0;
+
+  @include below($bp-sm) {
+    border-radius: var(--radius);
+    padding: 56px 0;
+  }
+}
+
+.container {
+  padding: 0 48px;
+
+  @include below($bp-sm) {
+    padding: 0 20px;
+  }
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 64px;
+  align-items: center;
+
+  @include below($bp-lg) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--accent-soft);
+
+  &::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--accent-soft);
+  }
+}
+
+.title {
+  margin-bottom: 20px;
+  font-weight: 800;
+  font-size: clamp(32px, 4vw, 46px);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.text {
+  max-width: 380px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--bg) 68%, transparent);
+
+  @include below($bp-lg) {
+    max-width: none;
+  }
+}
+
+.form {
+  background: var(--surface);
+  color: var(--ink);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+
+  @include below($bp-sm) {
+    padding: 24px;
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 18px;
+
+  @include below($bp-sm) {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 18px;
+
+  label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+  }
+
+  input,
+  select,
+  textarea {
+    padding: 14px 16px;
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+    font-size: 15px;
+    background: var(--bg);
+    resize: none;
+    transition: border-color 0.3s var(--ease);
+  }
+
+  textarea {
+    min-height: 92px;
+    font-family: inherit;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+}
+
+.secondary label {
+  font-weight: 500;
+}
+
+.note {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.success {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: color-mix(in srgb, var(--accent) 70%, black);
+  font-weight: 600;
+  font-size: 14px;
+
+  svg {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+  }
+}

@@ -1,0 +1,117 @@
+@use 'abstracts' as *;
+@use 'reset';
+
+/*
+ * Дизайн-токены LUMÉ.
+ * Держу их CSS-переменными, а не SCSS: цвета читаются в DevTools и, если
+ * понадобится тёмная тема или ребрендинг, меняется только этот блок.
+ */
+:root {
+  --bg: #f5f3ef;
+  --surface: #fcfbf9;
+  --ink: #1d1d1b;
+  --muted: #6f706c;
+  --line: #e5e1da;
+
+  --accent: #031d61;
+  --accent-soft: #d6dcef;
+  --deep: #041233;
+
+  --radius: 14px;
+  --radius-lg: 22px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body {
+  font-family: 'Manrope', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+
+  // Мобильная кнопка записи фиксирована снизу — оставляем под неё место,
+  // чтобы она не перекрывала последний блок страницы.
+  @include below($bp-md) {
+    padding-bottom: calc(90px + env(safe-area-inset-bottom));
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+}
+
+// Акцентная часть заголовка — тот же Manrope, но плотнее и цветом бренда.
+em,
+.serif {
+  font-family: 'Manrope', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+}
+
+section {
+  padding: 120px 0;
+
+  @include below($bp-md) {
+    padding: 80px 0;
+  }
+}
+
+/*
+ * Появление блоков при скролле.
+ * Классы глобальные, потому что состояние ставит общий хук useReveal,
+ * а не отдельный компонент.
+ */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.8s var(--ease),
+    transform 0.8s var(--ease);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s var(--ease),
+    transform 0.7s var(--ease);
+}
+
+.reveal-stagger.is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@for $i from 1 through 6 {
+  .reveal-stagger.is-visible > *:nth-child(#{$i}) {
+    transition-delay: #{0.02 + ($i - 1) * 0.07}s;
+  }
+}
+
+// Страница печатается без JS, поэтому скрытый по умолчанию контент
+// нужно принудительно показать.
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .reveal,
+  .reveal-stagger,
+  .reveal-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

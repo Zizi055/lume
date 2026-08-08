@@ -1,0 +1,26 @@
+.wrap {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 90;
+  padding: 28px 16px calc(16px + env(safe-area-inset-bottom));
+
+  // Градиент вместо сплошной подложки: кнопка «всплывает» над контентом,
+  // а не отрезает его жёсткой линией.
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in srgb, var(--bg) 75%, transparent) 40%,
+    var(--bg) 78%
+  );
+
+  @include below($bp-md) {
+    display: block;
+  }
+}
+
+.button {
+  box-shadow: 0 16px 32px -14px color-mix(in srgb, var(--ink) 45%, transparent);
+}

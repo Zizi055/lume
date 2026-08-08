@@ -1,0 +1,26 @@
+@use 'tokens' as *;
+
+@mixin below($bp) {
+  @media (max-width: $bp) {
+    @content;
+  }
+}
+
+// Контентная колонка с одинаковыми полями на всех секциях.
+@mixin container {
+  width: 100%;
+  max-width: $container;
+  margin: 0 auto;
+  padding: 0 24px;
+
+  @include below($bp-sm) {
+    padding: 0 18px;
+  }
+}
+
+// Убираем анимации для пользователей с prefers-reduced-motion.
+@mixin motion-safe {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}

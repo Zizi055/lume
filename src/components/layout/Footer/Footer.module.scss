@@ -1,0 +1,118 @@
+.footer {
+  background: var(--deep);
+  color: color-mix(in srgb, var(--bg) 92%, transparent);
+  padding: 80px 0 28px;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 56px;
+
+  @include below($bp-md) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include below($bp-sm) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.logo {
+  display: inline-block;
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  color: var(--bg);
+  margin-bottom: 18px;
+}
+
+.about {
+  color: color-mix(in srgb, var(--bg) 62%, transparent);
+  font-size: 14px;
+  max-width: 260px;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.socials {
+  display: flex;
+  gap: 10px;
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--bg) 30%, transparent);
+  color: var(--bg);
+  transition:
+    background-color 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+}
+
+.colTitle {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: color-mix(in srgb, var(--bg) 55%, transparent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+
+  a,
+  li {
+    font-size: 14.5px;
+    color: color-mix(in srgb, var(--bg) 82%, transparent);
+  }
+
+  a:hover {
+    color: var(--accent-soft);
+  }
+}
+
+.colIcon {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  vertical-align: -2px;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid color-mix(in srgb, var(--bg) 16%, transparent);
+  font-size: 12.5px;
+  color: color-mix(in srgb, var(--bg) 50%, transparent);
+
+  @include below($bp-sm) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

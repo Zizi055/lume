@@ -1,0 +1,203 @@
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 720px;
+  padding: 0;
+  overflow: hidden;
+
+  @include below($bp-sm) {
+    min-height: 600px;
+  }
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    will-change: transform;
+  }
+}
+
+// Затемнение-подложка под текстом: слева фон почти непрозрачный,
+// справа полностью открывает фотографию.
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    var(--bg) 0%,
+    color-mix(in srgb, var(--bg) 94%, transparent) 26%,
+    color-mix(in srgb, var(--bg) 60%, transparent) 46%,
+    color-mix(in srgb, var(--bg) 12%, transparent) 64%,
+    transparent 80%
+  );
+
+  // На узком экране текст лежит поверх фотографии сверху вниз,
+  // поэтому и градиент разворачиваем по вертикали.
+  @include below($bp-sm) {
+    background: linear-gradient(
+      180deg,
+      var(--bg) 0%,
+      color-mix(in srgb, var(--bg) 90%, transparent) 55%,
+      color-mix(in srgb, var(--bg) 55%, transparent) 78%,
+      color-mix(in srgb, var(--bg) 25%, transparent) 100%
+    );
+  }
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+
+.content {
+  max-width: 560px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  margin-bottom: 26px;
+
+  &::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+}
+
+.title {
+  font-size: clamp(36px, 4.6vw, 58px);
+  letter-spacing: -0.015em;
+
+  em {
+    font-weight: 800;
+    color: var(--accent);
+  }
+}
+
+.subtitle {
+  margin-top: 24px;
+  max-width: 420px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 40px;
+
+  @include below($bp-sm) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+}
+
+.textLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 2px;
+  font-weight: 600;
+  font-size: 15px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.4;
+    transform: scaleX(0.35);
+    transform-origin: left;
+    transition:
+      transform 0.4s var(--ease),
+      opacity 0.4s var(--ease);
+  }
+
+  &:hover::after {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+
+  svg {
+    width: 15px;
+    height: 15px;
+    transition: transform 0.4s var(--ease);
+  }
+
+  &:hover svg {
+    transform: translateX(3px);
+  }
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 48px;
+
+  @include below($bp-sm) {
+    flex-direction: column;
+    margin-top: 24px;
+    gap: 12px;
+  }
+}
+
+.stat {
+  display: inline-flex;
+  flex-direction: column;
+  flex: 1 1 180px;
+  max-width: 220px;
+  padding: 22px 24px;
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 24px 48px -24px color-mix(in srgb, var(--ink) 35%, transparent);
+
+  @include below($bp-sm) {
+    max-width: none;
+  }
+}
+
+.statValue {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 800;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+
+.statLabel {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}

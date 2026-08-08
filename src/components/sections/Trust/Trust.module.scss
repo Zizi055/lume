@@ -1,0 +1,91 @@
+.trust {
+  background: var(--surface);
+}
+
+.head {
+  max-width: 620px;
+  margin-bottom: 64px;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line);
+
+  @include below($bp-lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include below($bp-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.item {
+  padding: 36px 28px 36px 0;
+  border-right: 1px solid var(--line);
+  transition: transform 0.5s var(--ease);
+
+  &:not(:first-child) {
+    padding-left: 28px;
+  }
+
+  &:last-child {
+    border-right: none;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  // В две колонки правая граница мешает только у второй карточки,
+  // а нижний ряд нужно отделить сверху.
+  @include below($bp-lg) {
+    &:nth-child(2) {
+      border-right: none;
+    }
+
+    &:nth-child(3),
+    &:nth-child(4) {
+      border-top: 1px solid var(--line);
+    }
+  }
+
+  @include below($bp-sm) {
+    padding: 28px 0;
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+
+    &:not(:first-child) {
+      padding-left: 0;
+    }
+
+    &:nth-child(3),
+    &:nth-child(4) {
+      border-top: none;
+    }
+  }
+}
+
+.num {
+  display: block;
+  margin-bottom: 22px;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+}
+
+.title {
+  margin-bottom: 10px;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.desc {
+  max-width: 220px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}

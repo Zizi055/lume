@@ -1,0 +1,136 @@
+.lead {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 64px;
+  align-items: center;
+  margin-bottom: 72px;
+  padding-bottom: 72px;
+  border-bottom: 1px solid var(--line);
+
+  @include below($bp-lg) {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 48px;
+    padding-bottom: 48px;
+  }
+}
+
+// Скруглённый угол снизу справа — фирменная деталь портрета главного врача.
+.leadPhoto {
+  border-radius: 6px 6px 130px 6px;
+  overflow: hidden;
+  aspect-ratio: 4 / 4.8;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @include below($bp-lg) {
+    max-width: 380px;
+  }
+
+  @include below($bp-sm) {
+    border-radius: 6px 6px 60px 6px;
+  }
+}
+
+.leadEyebrow {
+  display: block;
+  margin-bottom: 18px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+}
+
+.leadName {
+  margin-bottom: 6px;
+  font-size: clamp(26px, 3vw, 36px);
+}
+
+.leadRole {
+  margin-bottom: 24px;
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.leadBio {
+  max-width: 480px;
+  font-size: 17px;
+  line-height: 1.75;
+
+  :global(.serif) {
+    font-size: 1.15em;
+  }
+}
+
+.team {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--line);
+
+  @include below($bp-lg) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 28px 24px;
+  border-right: 1px solid var(--line);
+
+  &:last-child {
+    border-right: none;
+  }
+
+  @include below($bp-lg) {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    // Лёгкое обесцвечивание, чтобы стоковые портреты не спорили по цвету.
+    filter: grayscale(0.3) contrast(1.05);
+  }
+}
+
+.rowText {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.name {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.role {
+  font-size: 13px;
+  color: var(--accent);
+}
+
+.exp {
+  font-size: 12.5px;
+  color: var(--muted);
+}
