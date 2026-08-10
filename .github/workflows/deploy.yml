@@ -28,11 +28,7 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
-
-      # Проект отдаётся из подпапки /<repo>/, поэтому base для Vite задаём здесь.
       - run: npm run build
-        env:
-          VITE_BASE: /${{ github.event.repository.name }}/
 
       - uses: actions/upload-pages-artifact@v3
         with:

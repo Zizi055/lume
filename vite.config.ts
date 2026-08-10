@@ -1,12 +1,10 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// Базовый путь задаётся переменной окружения: на GitHub Pages проект живёт
-// в подпапке (/<repo>/), локально и на превью — в корне.
-const base = process.env.VITE_BASE ?? '/';
-
 export default defineConfig({
-  base,
+  // Относительные пути к ассетам: сборка одинаково работает и в корне домена,
+  // и в подпапке GitHub Pages (/<repo>/), и при открытии файла локально.
+  base: './',
   plugins: [react()],
   css: {
     preprocessorOptions: {
